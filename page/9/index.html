@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">896</span>
+          <span class="site-state-item-count">901</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -147,6 +147,98 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.tingtao.blog/2024/08/06/20240806/20240806200947/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="听涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 听涛">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/06/20240806/20240806200947/" class="post-title-link" itemprop="url">Srping MVC工作流程及源码分析？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-08-06 20:09:47 / 修改时间：21:00:08" itemprop="dateCreated datePublished" datetime="2024-08-06T20:09:47+08:00">2024-08-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>客户端发送请求到服务器；</li>
+<li>DispatcherServlet接收请求并解析请求URL；</li>
+<li>DispatcherServlet根据请求URL调用相应的Controller；</li>
+<li>Controller调用业务逻辑处理请求并返回ModelAndView；</li>
+<li>ViewResolver解析View，渲染页面并返回给客户端。</li>
+</ol>
+<p>二、Spring MVC源码分析</p>
+<p>接下来，我们将对Spring MVC的源码进行分析，以便更好地理解其工作流程。</p>
+<ol>
+<li>DispatcherServlet：这是Spring MVC的核心servlet，负责接收客户端请求并分发到相应的Controller。DispatcherServlet的主要工作流程如下：</li>
+</ol>
+<p>（1）初始化：在Web应用程序启动时，DispatcherServlet被创建并加载配置信息。</p>
+<p>（2）接收请求：当有请求到达时，DispatcherServlet解析请求URL并查找相应的Handler（处理器）。</p>
+<p>（3）分发请求：DispatcherServlet将请求分发给相应的Controller处理。在这个过程中，DispatcherServlet会调用HandlerMapping组件来查找合适的Controller。</p>
+<p>（4）处理请求：Controller处理请求并返回一个ModelAndView对象，该对象包含模型数据和视图信息。</p>
+<p>（5）视图解析：DispatcherServlet将ModelAndView传递给ViewResolver组件，ViewResolver负责解析View并渲染页面。</p>
+<p>（6）响应客户端：最后，DispatcherServlet将渲染后的页面返回给客户端。</p>
+<ol start="2">
+<li>HandlerMapping：HandlerMapping是Spring MVC中用于将请求URL映射到相应Controller的组件。在源码中，Spring MVC提供了多种实现，如SimpleUrlHandlerMapping、BeanNameUrlHandlerMapping等。这些实现类根据不同的配置方式将请求URL与Controller关联起来。</li>
+<li>ViewResolver：ViewResolver负责解析View并渲染页面。在源码中，Spring MVC提供了多种视图解析器，如InternalResourceViewResolver、JstlViewResolver等。这些解析器根据配置信息解析View，并将结果返回给DispatcherServlet，最终返回给客户端。</li>
+</ol>
+<p>通过对Spring MVC源码的分析，我们可以更深入地了解其工作流程和内部实现原理。这有助于我们更好地使用Spring MVC构建高效、稳定的Web应用程序。同时，理解源码也有助于我们进行定制化和扩展，以满足特定的业务需求。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -911,104 +1003,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.tingtao.blog/2024/08/06/20240806/20240806173952/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="听涛">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 听涛">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/06/20240806/20240806173952/" class="post-title-link" itemprop="url">平舌、翘舌音学习： z、c、s--zh、ch、sh</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-08-06 17:39:52 / 修改时间：18:00:12" itemprop="dateCreated datePublished" datetime="2024-08-06T17:39:52+08:00">2024-08-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>如何正确发音z、c、s与zh、ch、sh</p>
-<p>中文发音中，平舌音和翘舌音是非常重要的一部分，对于很多学习者来说，正确区分和发音z、c、s与zh、ch、sh是一大挑战。今天，我们就来详细讲解一下这两个音系的发音技巧。</p>
-<p>一、平舌音：z、c、s</p>
-<ol>
-<li>z音：发音时，舌头抵住上齿龈，留出适当的空隙让气流流出。发音就像在嘴里轻轻吐出“滋”的声音。</li>
-<li>c音：发音方法与z相似，但发音时气流更强一些，有点像“呲”的声音。</li>
-<li>s音：舌头抵住上齿龈，留出较大的空隙让气流流出，发出像“嘶”的声音。</li>
-</ol>
-<p>二、翘舌音：zh、ch、sh</p>
-<ol>
-<li>zh音：舌尖上扬，抵住硬腭前部，然后留出空隙让气流流出。发音时感觉像在发出“遮”的声音。</li>
-<li>ch音：发音动作与zh相似，但发音时气流更强，有点像“吃”的声音。</li>
-<li>sh音：舌头翘起，接近硬腭前部，让气流从舌与硬腭之间的空隙中流出，发出像“诗”的声音。</li>
-</ol>
-<p>三、发音技巧</p>
-<ol>
-<li>区分音系：首先要明确平舌音和翘舌音的发音差异，明确音系有助于我们更好地掌握发音技巧。</li>
-<li>模仿与练习：通过模仿标准口音的发音，结合大量练习，逐渐熟悉和掌握平舌音和翘舌音的发音。</li>
-<li>听力训练：通过听力训练，学会辨别自己的发音是否准确，及时调整发音方法。</li>
-<li>口腔配合：注意口腔的协同作用，正确摆放舌头位置，同时配合口腔其他部位的动作，使发音更加准确。</li>
-</ol>
-<p>四、常见问题及解决方法</p>
-<ol>
-<li>混淆音系：部分学习者可能无法准确区分平舌音和翘舌音。建议通过大量练习和听力训练，逐渐熟悉两个音系的发音差异。</li>
-<li>发音不自然：初学者在发音时可能会感到不自然。这需要通过持续练习，逐渐熟悉发音技巧，使发音更加自然流畅。</li>
-</ol>
-<p>总之，正确区分和发音平舌音和翘舌音对于提高中文口语水平至关重要。通过掌握发音技巧、大量练习和听力训练，我们可以逐渐提高发音准确性，使口语表达更加自信流利。希望以上内容对大家有所帮助，让我们一起努力，提高中文发音水平！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/90/">90</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/91/">91</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
