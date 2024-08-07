@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.tingtao.blog","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8070896123414715"
+     crossorigin="anonymous"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C917MR0DXZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C917MR0DXZ');
+</script>
+
+    <meta name="description" content="京麒CTF 2024 - HarmonyOS移动端Native层逆向之旅 一、前言随着HarmonyOS成为众多开发者和安全研究者的关注焦点，移动端的Native层逆向研究也日益重要。本文将带你深入了解京麒CTF 2024中HarmonyOS移动端Native层逆向的过程与技巧。 二、背景介绍HarmonyOS是华为推出的新一代智能终端操作系统，其Native层安全机制是保护应用和数据安全的关键。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原创京麒CTF2024-HarmonyOS移动端Native层逆向">
+<meta property="og:url" content="https://www.tingtao.blog/2024/08/07/20240807/20240807081535/index.html">
+<meta property="og:site_name" content="听涛">
+<meta property="og:description" content="京麒CTF 2024 - HarmonyOS移动端Native层逆向之旅 一、前言随着HarmonyOS成为众多开发者和安全研究者的关注焦点，移动端的Native层逆向研究也日益重要。本文将带你深入了解京麒CTF 2024中HarmonyOS移动端Native层逆向的过程与技巧。 二、背景介绍HarmonyOS是华为推出的新一代智能终端操作系统，其Native层安全机制是保护应用和数据安全的关键。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-07T00:15:35.000Z">
+<meta property="article:modified_time" content="2024-08-07T00:39:04.890Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.tingtao.blog/2024/08/07/20240807/20240807081535/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.tingtao.blog/2024/08/07/20240807/20240807081535/","path":"2024/08/07/20240807/20240807081535/","title":"原创京麒CTF2024-HarmonyOS移动端Native层逆向"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>原创京麒CTF2024-HarmonyOS移动端Native层逆向 | 听涛</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C917MR0DXZ"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-C917MR0DXZ","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">听涛</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">观海听涛</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">896</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.tingtao.blog/2024/08/07/20240807/20240807081535/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="听涛">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="原创京麒CTF2024-HarmonyOS移动端Native层逆向 | 听涛">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          原创京麒CTF2024-HarmonyOS移动端Native层逆向
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-08-07 08:15:35 / 修改时间：08:39:04" itemprop="dateCreated datePublished" datetime="2024-08-07T08:15:35+08:00">2024-08-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>京麒CTF 2024 - HarmonyOS移动端Native层逆向之旅</p>
+<p>一、前言<br>随着HarmonyOS成为众多开发者和安全研究者的关注焦点，移动端的Native层逆向研究也日益重要。本文将带你深入了解京麒CTF 2024中HarmonyOS移动端Native层逆向的过程与技巧。</p>
+<p>二、背景介绍<br>HarmonyOS是华为推出的新一代智能终端操作系统，其Native层安全机制是保护应用和数据安全的关键。逆向工程是破解Native层安全机制的重要手段之一，通过逆向工程可以了解应用的内部逻辑和安全机制，进而发现潜在的安全漏洞和隐患。本文将介绍逆向工程在HarmonyOS移动端Native层的应用和挑战。</p>
+<p>三、逆向工程准备<br>在进行HarmonyOS移动端Native层的逆向之前，我们需要做好充分的准备。这包括选择合适的逆向工具，如IDA Pro、Hopper等反编译工具；了解HarmonyOS Native层的安全机制和代码结构；收集目标应用的调试信息，如库文件、内存数据等。这些准备工作有助于我们更高效地分析目标应用，减少不必要的失误。</p>
+<p>四、逆向过程分析<br>在逆向过程中，我们需要对目标应用的Native层代码进行深入分析。这包括识别关键函数和模块，分析代码逻辑，挖掘潜在的安全漏洞和漏洞利用方式等。在这个过程中，我们可能会遇到各种挑战，如复杂的代码结构、难以理解的逻辑等。因此，我们需要不断学习和掌握逆向技巧，提高逆向分析能力。</p>
+<p>五、逆向工程实践案例分享<br>为了更直观地展示逆向过程，本文将分享一个真实的实践案例。我们将通过分析一个实际的HarmonyOS应用Native层代码，展示如何进行逆向工程实践。这个过程将包括代码反编译、逻辑分析、漏洞挖掘等环节。通过这个案例，我们将深入了解逆向工程在HarmonyOS移动端Native层的应用。</p>
+<p>六、安全性提升建议<br>在了解逆向工程过程之后，我们需要思考如何提升HarmonyOS移动端Native层的安全性。本文将给出一些建议，如加强混淆与反混淆技术的运用、增加应用内的安全防护机制等。这些建议有助于增强应用的安全性，降低被逆向工程攻击的风险。</p>
+<p>七、总结与展望<br>通过对HarmonyOS移动端Native层逆向的研究和分析，我们可以发现逆向工程在安全领域的重要性及其挑战。本文总结了逆向工程的准备、过程分析、实践案例分享以及安全性提升建议等方面的内容，希望能为开发者提供有价值的参考和帮助。随着HarmonyOS的不断发展，我们期待未来有更多的安全研究者和开发者参与到这个领域的研究中来。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/07/20240807/20240807081406/" rel="prev" title="原创CVE-2018-17066复现（D-Link命令注入漏洞）">
+                  <i class="fa fa-angle-left"></i> 原创CVE-2018-17066复现（D-Link命令注入漏洞）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/08/07/20240807/20240807082125/" rel="next" title="原创WEB逆向——某音a_bogus参数纯算分析">
+                  原创WEB逆向——某音a_bogus参数纯算分析 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder"></span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
