@@ -2756,6 +2756,15 @@
   </url>
   
   <url>
+    <loc>https://www.tingtao.blog/2024/08/06/20240806/20240806042510/</loc>
+    
+    <lastmod>2024-08-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.tingtao.blog/2024/08/06/20240806/20240806043125/</loc>
     
     <lastmod>2024-08-05</lastmod>
@@ -2775,15 +2784,6 @@
   
   <url>
     <loc>https://www.tingtao.blog/2024/08/06/20240806/20240806043449/</loc>
-    
-    <lastmod>2024-08-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.tingtao.blog/2024/08/06/20240806/20240806042510/</loc>
     
     <lastmod>2024-08-05</lastmod>
     
@@ -9337,7 +9337,7 @@
 
   <url>
     <loc>https://www.tingtao.blog/</loc>
-    <lastmod>2024-08-07</lastmod>
+    <lastmod>2024-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
